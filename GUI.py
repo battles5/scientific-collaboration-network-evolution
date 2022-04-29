@@ -37,6 +37,68 @@ class GUI:
         self.rootWindow = Tk()
         self.statusText = StringVar(self.rootWindow, value=self.statusStr)  # at this point, statusStr =
 
+        self.rootWindow.wm_title(self.titleText)  # titleText = 'PyCX Simulator'
+        self.rootWindow.protocol('WM_DELETE_WINDOW', self.quitGUI)
+        self.rootWindow.geometry('450x250')
+        self.rootWindow.columnconfigure(0, weight=1)
+        self.rootWindow.rowconfigure(0, weight=1)
+
+        self.notebook = Notebook(self.rootWindow)
+        self.notebook.pack(side=TOP, padx=2, pady=2)
+
+        self.frameRun = Frame(self.rootWindow)
+        self.frameSettings = Frame(self.rootWindow)
+
+        self.notebook.add(self.frameRun, text="Run")
+        self.notebook.add(self.frameSettings, text="Settings")
+
+        self.status = Label(self.rootWindow, width=40, height=3, relief=SUNKEN, bd=1, textvariable=self.statusText)
+        self.status.pack(side=TOP, fill=X, padx=5, pady=5, expand=NO)
+
+        # -----------------------------------
+        # frameRun
+        # -----------------------------------
+        # buttonRun
+        self.runPauseString = StringVar(self.rootWindow)  # added "self.rootWindow" by Hiroki Sayama 10/09/2018
+        self.runPauseString.set("Run")
+        self.buttonRun = Button(self.frameRun, width=30, height=2, textvariable=self.runPauseString, command=self.runEvent)
+        self.buttonRun.pack(side=TOP, padx=5, pady=5)
+
+        # buttonStep
+        self.buttonStep = Button(self.frameRun, width=30, height=2, text='Step Once', command=self.stepOnce)
+        self.buttonStep.pack(side=TOP, padx=5, pady=5)
+
+        # buttonReset
+        self.buttonReset = Button(self.frameRun, width=30, height=2, text='Reset', command=self.resetModel)
+        self.buttonReset.pack(side=TOP, padx=5, pady=5)
+
+        # -----------------------------------
+        # frameSettings
+        # -----------------------------------
+        can = Canvas(self.frameSettings)
+
+        lab = Label(can, width=25, height=1, text="Step size ", justify=LEFT, anchor=W, takefocus=0)
+        lab.pack(side='left')
+
+        self.stepScale = Scale(can, from_=1, to=50, resolution=1, command=self.changeStepSize, orient=HORIZONTAL,
+                               width=25, length=150)
+        self.stepScale.set(self.stepSize)
+        self.stepScale.pack(side='left')
+
+        can.pack(side='top')
+
+        can = Canvas(self.frameSettings)
+        lab = Label(can, width=25, height=1, text="Step visualization delay in ms ", justify=LEFT, anchor=W,
+                    takefocus=0)
+        lab.pack(side='left')
+        self.stepDelay = Scale(can, from_=0, to=max(2000, self.timeInterval),
+                               resolution=10, command=self.changeStepDelay, orient=HORIZONTAL, width=25, length=150)
+        self.stepDelay.set(self.timeInterval)
+        # self.showHelp(self.stepDelay, "The visualization of each step is delays by the given number of milliseconds.")
+        self.stepDelay.pack(side='left')
+
+        can.pack(side='top')
+
 
     # ------ runEvent ------
     # This event is envoked when "Run" button is clicked.
@@ -85,7 +147,7 @@ class GUI:
             self.buttonSaveParameters.configure(state=NORMAL)
 
     # ------ resetModel ------
-    # This function interrupts the running model.
+    # This function interrupts and takes the model to initial conditions.
     # This function is envoked when "Reset" button is clicked.
     def resetModel(self):
         self.running = False
@@ -97,7 +159,7 @@ class GUI:
 
     # ------ drawModel ------
     # This function activates the visualization window and shows the simulation state.
-    # This function is envoked at every time step execution.
+    # If the visualization windows is already open it shows the simulation state.
     def drawModel(self):
         plt.ion()  # SM 3/26/2020
         if self.modelFigure == None or self.modelFigure.canvas.manager.window == None:
@@ -126,6 +188,8 @@ class GUI:
             self.drawModel()
         self.rootWindow.mainloop()
 
+    # ------ quitGUI ------
+    # This function quit the graphic user interface and close all windows.
     def quitGUI(self):
         self.running = False
         self.rootWindow.quit()
