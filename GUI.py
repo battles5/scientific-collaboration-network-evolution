@@ -59,7 +59,8 @@ class GUI:
                 self.buttonSaveParametersAndReset.configure(state=NORMAL)
 
     # ------ stepModel ------
-    # This function calls and makes the simulation working
+    # This function calls and makes the modelStepFunc function working for a time step.
+    # This function is envoked when runEvent is active.
     def stepModel(self):
         if self.running:
             self.modelStepFunc()
@@ -70,6 +71,9 @@ class GUI:
                 self.drawModel()
             self.rootWindow.after(int(self.timeInterval * 1.0 / self.stepSize), self.stepModel)
 
+    # ------ stepOnce ------
+    # This function calls and makes the modelStepFunc function working for just a single time step.
+    # This function is envoked when "Step Once" button is clicked.
     def stepOnce(self):
         self.running = False
         self.runPauseString.set("Continue Run")
@@ -80,6 +84,9 @@ class GUI:
         if len(self.parameterSetters) > 0:
             self.buttonSaveParameters.configure(state=NORMAL)
 
+    # ------ resetModel ------
+    # This function interrupts the running model.
+    # This function is envoked when "Reset" button is clicked.
     def resetModel(self):
         self.running = False
         self.runPauseString.set("Run")
@@ -88,6 +95,9 @@ class GUI:
         self.setStatusStr("Model has been reset")
         self.drawModel()
 
+    # ------ drawModel ------
+    # This function activates the visualization window and shows the simulation state.
+    # This function is envoked at every time step execution.
     def drawModel(self):
         plt.ion()  # SM 3/26/2020
         if self.modelFigure == None or self.modelFigure.canvas.manager.window == None:
@@ -96,6 +106,9 @@ class GUI:
         self.modelFigure.canvas.manager.window.update()
         plt.show()
 
+    # ------ start ------
+    # This executes the "initialize", "observe" and "update" model functions taking them as arguments.
+    # This function is envoked at every execution.
     def start(self, func=[]):
         if len(func) == 3:
             self.modelInitFunc = func[0]
@@ -118,15 +131,6 @@ class GUI:
         self.rootWindow.quit()
         plt.close('all')
         self.rootWindow.destroy()
-
-    def showHelp(self, widget, text):
-        def setText(self):
-            self.statusText.set(text)
-            self.status.configure(foreground='blue')
-
-        def showHelpLeave(self):
-            self.statusText.set(self.statusStr)
-            self.status.configure(foreground='black')
 
         widget.bind("<Enter>", lambda e: setText(self))
         widget.bind("<Leave>", lambda e: showHelpLeave(self))
