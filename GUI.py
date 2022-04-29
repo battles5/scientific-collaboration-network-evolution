@@ -55,6 +55,9 @@ class GUI:
         self.status = Label(self.rootWindow, width=40, height=3, relief=SUNKEN, bd=1, textvariable=self.statusText)
         self.status.pack(side=TOP, fill=X, padx=5, pady=5, expand=NO)
 
+
+        # There will be two frames: Run and Settings.
+
         # -----------------------------------
         # frameRun
         # -----------------------------------
