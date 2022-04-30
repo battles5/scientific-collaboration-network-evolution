@@ -102,6 +102,35 @@ class GUI:
 
         can.pack(side='top')
 
+    # Function that defines the new status of the system at any start.
+    def setStatusStr(self, newStatus):
+        self.statusStr = newStatus
+        self.statusText.set(self.statusStr)
+
+    # ------ Model control functions for changing parameters ------
+    # This let the user decide how many time steps the simulation
+    # run before it is upgraded.
+    def changeStepSize(self, val):
+        self.stepSize = int(val)
+
+    # This function let the user decide the upgrading frequency
+    # of the visualization of the simulation setting the temporal
+    # interval in ms.
+    def changeStepDelay(self, val):
+        self.timeInterval = int(val)
+
+    # This function sets the chosen parameters and saves them.
+    def saveParametersCmd(self):
+        for variableSetter in self.parameterSetters:
+            variableSetter(float(self.varEntries[variableSetter].get()))
+            self.setStatusStr("New parameter values have been set")
+
+    # This function sets the chosen parameters and saves them as
+    # initial conditions in order to start the simulation.
+    # It reset the initial condition invoking "resetModel()".
+    def saveParametersAndResetCmd(self):
+        self.saveParametersCmd()
+        self.resetModel()
 
     # ------ runEvent ------
     # This event is envoked when "Run" button is clicked.
