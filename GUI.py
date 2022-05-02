@@ -12,7 +12,6 @@ Created on Fri Apr 08 14:01:39 2022
 #
 # I decided to create a GUI to have control over the simulation as it runs
 # and for an easier visualization.
-
 import matplotlib
 
 class GUI:
