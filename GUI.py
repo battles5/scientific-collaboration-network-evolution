@@ -4,7 +4,7 @@ Created on Fri Apr 08 14:01:39 2022
 
 @author: Orso Peruzzi
 """
-# This very simple GUI is realized using the Python 3.9 inbuilt tkinter package.
+# This very simple dinamic and interactive GUI is realized using the Python 3.9 inbuilt tkinter package.
 # The tkinter package (“Tk interface”) is the standard Python interface to the Tk GUI toolkit.
 #
 # Project website:
@@ -13,6 +13,8 @@ Created on Fri Apr 08 14:01:39 2022
 # I decided to create a GUI to have control over the simulation as it runs
 # and for an easier visualization.
 import matplotlib
+from Tkinter import *
+from ttk import Notebook
 
 class GUI:
 
