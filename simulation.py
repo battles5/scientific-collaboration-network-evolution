@@ -12,8 +12,9 @@ m0 = 5  # Number of nodes in initial condition
 m = 1  # Number of edges per new node
 s = # Number of steps for growing the network
 
+# -----------------------------------
 # Main functions of the network simulation
-
+# -----------------------------------
 # ------ Step 1/4 ------
 def initialize():
     # Defining g graph (networkx class) as a global variable
@@ -62,5 +63,10 @@ def update():
             g.add_edge(newcomer, j)
             nds.remove(j)
         g.pos[newcomer] = (0, 0)
-    # simulation of node movement
+    # Simulation of node movement
     g.pos = nx.spring_layout(g, pos=g.pos, iterations=3)
+
+# -----------------------------------
+# Simulation start with GUI
+# -----------------------------------
+GUI.GUI().start(func=[initialize, observe, update])
