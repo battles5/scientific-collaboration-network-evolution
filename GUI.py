@@ -13,8 +13,10 @@ Created on Fri Apr 08 14:01:39 2022
 # I decided to create a GUI to have control over the simulation as it runs
 # and for an easier visualization.
 import matplotlib
-from Tkinter import *
-from ttk import Notebook
+import warnings
+
+# Suppressing matplotlib deprecation warnings
+warnings.filterwarnings("ignore", category = matplotlib.cbook.MatplotlibDeprecationWarning)
 
 class GUI:
 
