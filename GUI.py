@@ -17,11 +17,12 @@ import matplotlib
 
 class GUI:
 
-    # constructor
+    # Constructor
     def __init__(self, title='Network Evolution GUI', interval=0, stepSize=1, parameterSetters=[]):
 
         # GUI variables inside the costructor
 
+        # General project variables (such as main title, ...)
         self.titleText = title
         self.timeInterval = interval
         self.stepSize = stepSize
@@ -29,34 +30,35 @@ class GUI:
         self.varEntries = {}
         self.statusStr = ""
 
+        # Default status for GUI controls
         self.running = False
         self.modelFigure = None
         self.currentStep = 0
 
-        # root window with tkinter
+        # Root window with tkinter
         self.rootWindow = Tk()
         self.statusText = StringVar(self.rootWindow, value=self.statusStr)  # at this point, statusStr =
 
+        # Graphic default settings
         self.rootWindow.wm_title(self.titleText)  # titleText = 'PyCX Simulator'
         self.rootWindow.protocol('WM_DELETE_WINDOW', self.quitGUI)
         self.rootWindow.geometry('450x250')
         self.rootWindow.columnconfigure(0, weight=1)
         self.rootWindow.rowconfigure(0, weight=1)
-
         self.notebook = Notebook(self.rootWindow)
         self.notebook.pack(side=TOP, padx=2, pady=2)
 
+        # Frames
         self.frameRun = Frame(self.rootWindow)
         self.frameSettings = Frame(self.rootWindow)
-
         self.notebook.add(self.frameRun, text="Run")
         self.notebook.add(self.frameSettings, text="Settings")
-
         self.status = Label(self.rootWindow, width=40, height=3, relief=SUNKEN, bd=1, textvariable=self.statusText)
         self.status.pack(side=TOP, fill=X, padx=5, pady=5, expand=NO)
 
-
         # There will be two frames: Run and Settings.
+        # Below there is the variables list and default settings for
+        # each frames.
 
         # -----------------------------------
         # frameRun
@@ -114,7 +116,7 @@ class GUI:
         self.stepSize = int(val)
 
     # This function let the user decide the upgrading frequency
-    # of the visualization of the simulation setting the temporal
+    # of the visualization, setting the temporal
     # interval in ms.
     def changeStepDelay(self, val):
         self.timeInterval = int(val)
