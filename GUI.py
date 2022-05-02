@@ -13,8 +13,10 @@ Created on Fri Apr 08 14:01:39 2022
 # I decided to create a GUI to have control over the simulation as it runs
 # and for an easier visualization.
 import matplotlib
+import matplotlib.pyplot as plt
 import warnings
 import platform
+import sys
 
 # Suppressing matplotlib deprecation warnings
 # Updated 02/05/2022
@@ -28,7 +30,14 @@ else:  # SM 3/28/2020
     backend = 'Qt5Agg'
 matplotlib.use(backend)
 
-
+# Version check
+# Updated 02/05/2022
+if sys.version_info[0] == 3:  # Python 3
+    from tkinter import *
+    from tkinter.ttk import Notebook
+else:  # Python 2
+    from Tkinter import *
+    from ttk import Notebook
 
 class GUI:
 
