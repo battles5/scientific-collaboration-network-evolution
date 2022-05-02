@@ -14,9 +14,19 @@ Created on Fri Apr 08 14:01:39 2022
 # and for an easier visualization.
 import matplotlib
 import warnings
+import platform
 
 # Suppressing matplotlib deprecation warnings
+# Updated 02/05/2022
 warnings.filterwarnings("ignore", category = matplotlib.cbook.MatplotlibDeprecationWarning)
+
+# System check (added later)
+# Updated 02/05/2022
+if platform.system() == 'Windows':
+    backend = 'TkAgg'
+else:  # SM 3/28/2020
+    backend = 'Qt5Agg'
+matplotlib.use(backend)
 
 class GUI:
 
