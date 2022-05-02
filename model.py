@@ -1,15 +1,12 @@
-
+# -*- coding: utf-8 -*-
+"""
+Created on Mon May 02 14:47:23 2022
+@author: Orso Peruzzi
+"""
 import matplotlib.pyplot as plt
 # import numpy as np
 
-
-
-a = 0.001
-beta = 1
-t = 1000
-b = 2
-alfa = a/b
-
+t = N/beta
 
 N = list(range(1, beta * t + 1, beta))
 

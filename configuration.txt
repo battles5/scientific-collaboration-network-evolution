@@ -1,7 +1,7 @@
 [settings]
 a = 0.001
 beta = 1
-t = 1000
+N = 100
 b = 2
 alfa = a/b
 
