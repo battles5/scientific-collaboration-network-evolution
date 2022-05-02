@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr 17 10:13:47 2022
-
 @author: Orso Peruzzi
 """
 import GUI
