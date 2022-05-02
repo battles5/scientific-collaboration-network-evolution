@@ -62,3 +62,5 @@ def update():
             g.add_edge(newcomer, j)
             nds.remove(j)
         g.pos[newcomer] = (0, 0)
+    # simulation of node movement
+    g.pos = nx.spring_layout(g, pos=g.pos, iterations=3)
