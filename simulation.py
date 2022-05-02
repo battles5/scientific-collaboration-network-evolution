@@ -7,8 +7,8 @@ import GUI
 from pylab import *
 import networkx as nx
 
-m0 = 5  # Number of nodes in initial condition
-m = 1  # Number of edges per new node
+m0 = 5 # Number of nodes in initial condition
+m = 1 # Number of edges per new node
 s = 10 # Number of steps for growing the network
 
 # -----------------------------------
