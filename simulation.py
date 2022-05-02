@@ -10,7 +10,7 @@ import networkx as nx
 
 m0 = 5  # Number of nodes in initial condition
 m = 1  # Number of edges per new node
-s = # Number of steps for growing the network
+s = 10 # Number of steps for growing the network
 
 # -----------------------------------
 # Main functions of the network simulation
@@ -27,11 +27,11 @@ def initialize():
 
 # ------ Step 2/4 ------
 def observe():
-global g
-# Cleaning axes (maybe we had a previous batch and we want to clean the graph axes)
-cla()
-# Drawing the graph
-nx.draw(g, pos=g.pos)
+    global g
+    # Cleaning axes (maybe we had a previous batch and we want to clean the graph axes)
+    cla()
+    # Drawing the graph
+    nx.draw(g, pos=g.pos)
 
 # ------ Step 3/4 ------
 # This function is used to select nodes based on the preferential attachment criterion.
