@@ -253,6 +253,3 @@ class GUI:
         self.rootWindow.quit()
         plt.close('all')
         self.rootWindow.destroy()
-
-        widget.bind("<Enter>", lambda e: setText(self))
-        widget.bind("<Leave>", lambda e: showHelpLeave(self))
