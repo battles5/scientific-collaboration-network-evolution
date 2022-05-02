@@ -28,6 +28,8 @@ else:  # SM 3/28/2020
     backend = 'Qt5Agg'
 matplotlib.use(backend)
 
+
+
 class GUI:
 
     # Constructor
