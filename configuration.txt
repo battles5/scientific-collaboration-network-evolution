@@ -1,8 +1,7 @@
 [settings]
 a = 0.001
 beta = 1
-N = 100
+N = 1000
 b = 2
-alfa = a/b
 
 [paths]
