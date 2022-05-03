@@ -9,20 +9,20 @@ import numpy as np
 from statistics import mean
 
 
-def links_node_i_at_t(t, alfa, b):
+def links_node_i_at_t(t, alpha, b):
     ki = []
     ti = list(range(1, t + 1))
     for i in ti:
-        v = b * math.sqrt(t / i) * math.sqrt(((2 + alfa * t) / (2 + alfa * i)) ** 3)
+        v = b * math.sqrt(t / i) * math.sqrt(((2 + alpha * t) / (2 + alpha * i)) ** 3)
         ki.append(v)
     return ki
 
 
-def average_links_at_t(t):
+def average_links_at_t(t, alpha, b):
     y = []
     i = 1
     while i <= t:
-        v = links_node_i_at_t(i, alfa, b)
+        v = links_node_i_at_t(i, alpha, b)
         ki = mean(v)
         y.append(ki)
         i += 1
