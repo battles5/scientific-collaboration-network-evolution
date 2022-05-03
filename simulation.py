@@ -65,6 +65,7 @@ def update():
     # Simulation of node movement
     g.pos = nx.spring_layout(g, pos=g.pos, iterations=3)
 
+
 # -----------------------------------
 # Simulation start with GUI
 # -----------------------------------
