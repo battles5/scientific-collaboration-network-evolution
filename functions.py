@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from statistics import mean
 
+
 def links_node_i_at_t(t, alfa, b):
     ki = []
     ti = list(range(1, t + 1))
@@ -26,3 +27,11 @@ def average_links_at_t(t):
         y.append(ki)
         i += 1
     return y
+
+
+def plotting(x, y, xlabel, ylabel):
+    plt.figure(figsize=[10, 8], dpi=80, facecolor=None, edgecolor='grey')
+    plt.ylabel(xlabel)
+    plt.xlabel(ylabel)
+    plt.plot(x, y, color='blue', marker='o', linestyle='dashed', linewidth=2, markersize=5)
+    plt.show();
