@@ -21,27 +21,24 @@ alpha = a/b
 t = N/beta
 nlist = list(range(1, int(beta * t + 1), int(beta)))
 
-y = fn.average_links_at_t(t, alpha, b)
-x = nlist
-
-
-fig, (ax1, ax2) = plt.subplots(1, 2)
-fig.suptitle('A tale of 2 subplots')
+x1 = nlist
+y1 = fn.average_links_at_t(t, alpha, b)
 
 Pk = [float(j) / N for j in nx.degree_histogram(g)]
 domain = range(len(Pk))
-loglog(domain, Pk, ':', label='Barabasi-Albert')
-xlabel('$k$')
-ylabel('$P(k)$')
-legend()
-show()
 
-ax1.plot(x, y, 'o-')
-ax1.set_xlabel('N')
-ax1.set_ylabel('<k>')
+x2 = domain
+y2 = Pk
 
-ax2.plot(x2, y2, '.-')
-ax2.set_xlabel('k')
-ax2.set_ylabel('P(k)')
+fig =  plt.figure(figsize=[8, 6], dpi=80, facecolor=None, edgecolor='grey')
 
-plt.show()
+ax1 = fig.add_subplot(1, 2, 1)
+ax1.plot(x1, y1, color='brown', lw=1.5)
+ax1.set_xlabel('$N$')
+ax1.set_ylabel('$<k>$')
+
+ax2 = fig.add_subplot(1, 2, 2)
+ax2.plot(x2, y2, color='purple', lw=1.5)
+ax2.set_xlabel('$k$')
+ax2.set_ylabel('$P(k)$')
+# ax2.set_yscale('log')
