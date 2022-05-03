@@ -28,10 +28,9 @@ def average_links_at_t(t, alpha, b):
         i += 1
     return y
 
-
-def plotting(x, y, xlabel, ylabel):
-    plt.figure(figsize=[10, 8], dpi=80, facecolor=None, edgecolor='grey')
-    plt.ylabel(xlabel)
-    plt.xlabel(ylabel)
+def plotting_k(x, y):
+    f1 = plt.figure(figsize=[10, 8], dpi=80, facecolor=None, edgecolor='grey')
+    plt.ylabel('N')
+    plt.xlabel('<k>')
     plt.plot(x, y, color='blue', marker='o', linestyle='dashed', linewidth=2, markersize=5)
-    plt.show();
+    return(f1)
