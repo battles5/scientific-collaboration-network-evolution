@@ -41,8 +41,8 @@ ax1.set_ylabel('$<k>$', fontsize = 15)
 
 ax2 = fig.add_subplot(1, 2, 2)
 ax2.plot(x2, y2, color = 'purple', lw = 1.5)
-ax2.set_xlabel('$k$', fontsize = 15)
-ax2.set_ylabel('$P(k)$', fontsize = 15)
+ax2.set_xlabel('$ln$ $k$', fontsize = 15)
+ax2.set_ylabel('$ln$ $P(k)$', fontsize = 15)
 ax2.get_xaxis().set_major_formatter(
     matplotlib.ticker.LogFormatter(base=e, labelOnlyBase=True,
                                    minor_thresholds=None, linthresh=None))
