@@ -1,7 +1,5 @@
 [settings]
 a = 0.001
 beta = 1
-N = 1000
+N = 200
 b = 2
-
-[paths]
