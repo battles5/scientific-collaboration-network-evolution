@@ -134,7 +134,6 @@ ax3.scatter(x3, y3, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth
 ax3.set_xlabel('$N$', fontsize = 15)
 ax3.set_ylabel('$d$', fontsize = 15)
 
-plt.title('prova')
 ax4 = fig.add_subplot(2, 2, 4)
 ax4.scatter(x4, y4, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
 ax4.scatter(x5, y5, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
