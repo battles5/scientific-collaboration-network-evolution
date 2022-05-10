@@ -10,6 +10,7 @@ from pylab import *
 from math import e
 from matplotlib import pyplot as plt
 
+# Getting information from configuration.txt file
 DEFAULTS = "configuration.txt"
 config = configparser.ConfigParser()
 config.read(DEFAULTS)
@@ -22,6 +23,13 @@ alpha = a/b
 t = N/beta
 nlist = list(range(1, int(beta * t + 1), int(beta)))
 
+# -----------------------------------
+# Main part of the code
+# -----------------------------------
+# ------ First part ------
+# Initialization and computation of the evolution of the network.
+# Preferential attachment is calculated according to beta and b chosen values.
+# Networkx is used to create and make evolve the graph.
 diameters = []
 population = []
 clustcoefficient1 = []
@@ -34,6 +42,10 @@ for i in nlist:
         diameters.append(nx.diameter(g))
         population.append(len(g.nodes))
 
+# ------ Second part ------
+# Here the evolution calculated before is repeated for
+# different values of b in order to investigate different
+# behaviors at different scales.
 b1 = 2
 clustcoefficient2 = []
 clustcoefficient3 = []
@@ -77,13 +89,18 @@ for i in range(2, 10, 2):
                 clustcoefficient5.append(c5[j])
                 population5.append(len(g.nodes))
 
-
+# ------ Third part ------
+# In this part the network's connectivity k and
+# its distribution are calculated.
 kaverage = fn.average_links_at_t(t, alpha, b)
 
 Pk = [float(j) / N for j in nx.degree_histogram(g)]
 domain = range(len(Pk))
 
-
+# -----------------------------------
+# Plotting part
+# -----------------------------------
+# Here a figure with 4 subplots is generated.
 x1 = nlist
 y1 = kaverage
 
@@ -111,12 +128,16 @@ y8 = clustcoefficient5
 fig =  plt.figure(figsize=[10, 10], dpi=80, facecolor=None, edgecolor='grey')
 plt.style.use('seaborn')
 
+# ------ Subplot 1 ------
+# <k> in function of N
 ax1 = fig.add_subplot(2, 2, 1)
 ax1.plot(x1, y1, color='grey', lw=1.5)
 ax1.scatter(x1, y1, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
 ax1.set_xlabel('$N$', fontsize = 15)
 ax1.set_ylabel('$<k>$', fontsize = 15)
 
+# ------ Subplot 2 ------
+# Connectivity distribution, ln scaled.
 ax2 = fig.add_subplot(2, 2, 2)
 ax2.plot(x2, y2, color = 'grey', lw = 1.5)
 ax2.scatter(x2, y2, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
@@ -129,11 +150,15 @@ ax2.get_yaxis().set_major_formatter(
     matplotlib.ticker.LogFormatter(base=e, labelOnlyBase=True,
                                    minor_thresholds=None, linthresh=None))
 
+# ------ Subplot 3 ------
+# Diameter value in function of N.
 ax3 = fig.add_subplot(2, 2, 3)
 ax3.scatter(x3, y3, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
 ax3.set_xlabel('$N$', fontsize = 15)
 ax3.set_ylabel('$d$', fontsize = 15)
 
+# ------ Subplot 1 ------
+# Cluster coefficient in function of N.
 ax4 = fig.add_subplot(2, 2, 4)
 ax4.scatter(x4, y4, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
 ax4.scatter(x5, y5, cmap="Blues", s=100, alpha=0.6, edgecolor='black', linewidth=1)
