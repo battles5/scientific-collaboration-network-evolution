@@ -8,8 +8,24 @@ import matplotlib.pyplot as plt
 import numpy as np
 from statistics import mean
 
-
 def links_node_i_at_t(t, alpha, b):
+    """This method computes the evolution of the links node i has can be.
+
+       Parameters
+           t : total steps of the simulation.
+           alpha : ratio between the number of newly created internal links per node in unit
+                time and the average number of new links that an incoming node creates.
+           b : average number of new links that an incoming node creates.
+
+       Returns:
+           The number of links node i has at the time step t.
+
+       Raise:
+           ValueError if t, alpha and b are less or equal to zero, t and b are not a integer."""
+    if t <= 0 or alpha <= 0 or b <= 0:
+        raise ValueError('Time steps, alpha and b values must be positive, but are {}, {} and {}'.format(t, alpha, beta))
+    if type(t) != int or type(b) != int:
+        raise ValueError('t and b must be integers, but are {}, {} and {}'.format(type(t), type(b)))
     ki = []
     ti = list(range(1, t + 1))
     for i in ti:
@@ -19,6 +35,23 @@ def links_node_i_at_t(t, alpha, b):
 
 
 def average_links_at_t(t, alpha, b):
+    """This method computes the average of links per node in the network at t time steps.
+
+       Parameters
+           t : total steps of the simulation.
+           alpha : ratio between the number of newly created internal links per node in unit
+                time and the average number of new links that an incoming node creates.
+           b : average number of new links that an incoming node creates.
+
+       Returns:
+           The average number of links that each node has in the network at time after t steps.
+
+       Raise:
+           ValueError if t, alpha and b are less or equal to zero or t and b are not a integer."""
+    if t <= 0 or alpha <= 0 or b <= 0:
+        raise ValueError('Time steps, alpha and b values must be positive, but are {}, {} and {}'.format(t, alpha, beta))
+    if type(t) != int or type(b) != int:
+        raise ValueError('t and b must be integers, but are {}, {} and {}'.format(type(t), type(b)))
     y = []
     i = 1
     while i <= t:
@@ -27,10 +60,3 @@ def average_links_at_t(t, alpha, b):
         y.append(ki)
         i += 1
     return y
-
-def plotting_k(x, y):
-    f1 = plt.figure(figsize=[10, 8], dpi=80, facecolor=None, edgecolor='grey')
-    plt.ylabel('N')
-    plt.xlabel('<k>')
-    plt.plot(x, y, color='blue', marker='o', linestyle='dashed', linewidth=2, markersize=5)
-    return(f1)
