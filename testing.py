@@ -19,11 +19,29 @@ import numpy as np
 @settings(max_examples = 1)
 def test_links_node_i_at_t(t, alpha, b):
     assume(alpha > 0)
-    # Declaring an empty list for the links of node i
+    # Declaring an empty list for the links of node i.
     ki = []
-
+    # Declaring a list with t ordered time steps.
     ti = list(range(1, t + 1))
+    # Do a cycle in order to calculate the number of links of node i for each time step.
     for i in ti:
+        # Calculate the result of the master equation given the parameters.
         v = b * math.sqrt(t / i) * math.sqrt(((2 + alpha * t) / (2 + alpha * i)) ** 3)
+        # Test if the result of master equation is always positive.
+        assert v > 0
+        # Add the resault to the links list.
         ki.append(v)
+        # Test if the calculated value is different from the previous one.
+        assert ki[i] != ki[i-1]
+    # Test if the number of elements in the links list is actually the same of time steps.
+    assert len(ki) == len(ti)
     return ki
+
+if __name__ == "main":
+    pass
+
+
+
+
+
+
