@@ -8,17 +8,23 @@ import hypothesis
 from hypothesis import strategies as st
 from hypothesis import settings
 from hypothesis import given
-
 import functions
 import model
-import configuration
+import configparser
 import numpy as np
 
+# Getting information from configuration.txt file
+DEFAULTS = "configuration.txt"
+config = configparser.ConfigParser()
+config.read(DEFAULTS)
 
-@given(t = st.integers(1, configuration.t), alpha = st.floats(), b = st.integers(1, configuration.b))
+b = config.getint('settings', 'b')
+
+@given(t = st.integers(), alpha = st.floats(), b = st.integers(1, b))
 @settings(max_examples = 1)
 def test_links_node_i_at_t(t, alpha, b):
     assume(alpha > 0)
+    assume(t > 0)
     # Declaring an empty list for the links of node i.
     ki = []
     # Declaring a list with t ordered time steps.
