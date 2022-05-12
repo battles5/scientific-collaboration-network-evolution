@@ -1,7 +1,6 @@
-# Social network of
-scientific collaborations evolution model
+# Social network of scientific collaborations evolution model
 
-##Introduction
+## Introduction
 
 The co-authorship network of scientists represents a prototype of complex evolving networks.
 I propose a simple model that captures the network’s time evolution and a numerical simulation to uncover the behavior of
