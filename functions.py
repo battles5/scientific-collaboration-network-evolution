@@ -25,7 +25,7 @@ def links_node_i_at_t(t, alpha, b):
     if t <= 0 or alpha <= 0 or b <= 0:
         raise ValueError('Time steps, alpha and b values must be positive, but are {}, {} and {}'.format(t, alpha, beta))
     if type(t) != int or type(b) != int:
-        raise ValueError('t and b must be integers, but are {}, {} and {}'.format(type(t), type(b)))
+        raise ValueError('t and b must be integers')
     ki = []
     ti = list(range(1, t + 1))
     for i in ti:
@@ -51,7 +51,7 @@ def average_links_at_t(t, alpha, b):
     if t <= 0 or alpha <= 0 or b <= 0:
         raise ValueError('Time steps, alpha and b values must be positive, but are {}, {} and {}'.format(t, alpha, beta))
     if type(t) != int or type(b) != int:
-        raise ValueError('t and b must be integers, but are {}, {} and {}'.format(type(t), type(b)))
+        raise ValueError('t and b must be integers')
     y = []
     i = 1
     while i <= t:
