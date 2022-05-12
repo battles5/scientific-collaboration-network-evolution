@@ -24,9 +24,14 @@ The average number of links per node in the system at time t is thus given by
 Now, we define the rules that govern our evolving network model, capturing the basic mechanism governing the evolution of the co-authorship
 network:
 1. Nodes join the network at a constant rate.
-2. Incoming nodes link to the already present nodes following preferential attachment.
+2. Incoming nodes link to the already present nodes following **preferential attachment**.
 3. Nodes already present in the network form new internal links following preferential attachment.
 4. We neglect the aging of nodes, and assume that all nodes and links present in the system are active, able to initiate and receive new links.
 
 In the model, we assume that the number of authors on a paper, ***m***, is constant. In
 reality ***m*** is a stochastic variable, as the number of authors varies from paper to paper: making ***m*** a stochastic variable is not expected to change the scaling behavior.
+
+Taking into account that new links join the system with a constant rate, **β**, the continuum equation for the evolution of the number of links node i has can be written as:
+
+<img src="https://latex.codecogs.com/svg.image?\large&space;k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left&space;(&space;\frac{2&plus;\alpha&space;t}{2&plus;\alpha&space;t_{i}}&space;\right&space;)^{3}}" title="https://latex.codecogs.com/svg.image?\large k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left ( \frac{2+\alpha t}{2+\alpha t_{i}} \right )^{3}}" />
+
