@@ -9,11 +9,12 @@ from hypothesis import strategies as st
 from hypothesis import settings
 from hypothesis import given
 from hypothesis import HealthCheck
-import functions
+import functions as fn
 import model
 import configparser
 import numpy as np
 import math
+from statistics import mean
 
 # Getting information from configuration.txt file
 DEFAULTS = "configuration.txt"
@@ -41,22 +42,33 @@ def test_links_node_i_at_t(t, alpha, b):
         # Test if the calculated value is different from the previous one.
         if i > 2:
             assert ki[i-2] != v
+        # Cycling for testing if the results of master equation are always positive.
     for j in range(len(ki)):
-        # Test if the results of master equation are always positive.
         assert ki[j] > 0
     return ki
 
 @given(t = st.integers(), alpha = st.floats(), b = st.integers(0, b))
 @settings(max_examples = 1, suppress_health_check=HealthCheck.all())
 def test_average_links_at_t(t, alpha, b):
-    y = []
+    hypothesis.assume(alpha > 0)
+    hypothesis.assume(t > 0)
+    hypothesis.assume(b > 0)
+    # Declaring an empty list for the average values of ki list of each time step computation.
+    averages = []
+    # Counter
     i = 1
+    # Do a cycle in order to do the average of the number of links of node i for each time step.
     while i <= t:
-        v = links_node_i_at_t(i, alpha, b)
-        ki = mean(v)
-        y.append(ki)
+        v = fn.links_node_i_at_t(i, alpha, b)
+        # Average links each node has at time step t.
+        nl = mean(v)
+        averages.append(nl)
         i += 1
-    return y
+    # Cycling for testing if the results of master equation are always positive.
+    for j in range(len(averages)):
+        # Test if the averages are always positive.
+        assert averages[j] > 0
+    return averages
 
 if __name__ == "main":
     pass
