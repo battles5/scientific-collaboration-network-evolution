@@ -54,7 +54,10 @@ In this project we will simulate the social complex network with preferential at
 This project consists of two parts:
 1. A graphic user interface ([GUI](GUI.py)), that is an interactive tool through which the simulation can be performed (continuously or gradually) and contextually displayed.
 It has two windows, one where the graph is represented dynamically, one where the user can run the simulation.
-2. A program
+2. A program ([model](model.py)) that numerically simulates the network dynamics following the analytical 
+framework described above and plots the results.
+
+
 
 
 
