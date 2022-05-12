@@ -42,7 +42,7 @@ def test_links_node_i_at_t(t, alpha, b):
         ki.append(v)
         # Test if the calculated value is different from the previous one.
         if i > 2:
-            assert ki[i-1] != ki[i]
+            assert ki[i-1] != v
     # Test if the number of elements in the links list is actually the same of time steps.
     # assert len(ki) == len(ti)
     return ki
