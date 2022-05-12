@@ -1,4 +1,4 @@
-# Social network of scientific collaborations evolution model
+# Social network of scientific collaborations: an evolution model
 
 ## Introduction
 The co-authorship network of scientists represents a prototype of complex evolving networks.
@@ -57,9 +57,11 @@ It has two windows, one where the graph is represented dynamically, one where th
 2. A program ([model](model.py)) that numerically simulates the network dynamics following the analytical 
 framework described above and plots the results.
 
+The user can choose whether to start the GUI or the model first.
+Before this, the user has to set the configuration parameters of the network, indicating them in the [configuration](configuration.txt) file,
+or eventually write a new one, using the syntax of configuration; if the user wants to do so, he has to be careful to include as values of ***N*** (the number of total nodes to be reached during the simulation),
+***b*** (the number of new links that an incoming node creates) and **β** (the joining rate) **only natural numbers**. We denote
+by ***a*** the number of newly created internal links per node in unit time: in this case you have to enter a value between ***0*** and ***1***.
 
-
-
-
-
-The following code simulates the model using ***graph*** modelling through ```networkx``` library. The main steps are:
+### The graphic user interface
+These are the steps in order to start the simulation:
