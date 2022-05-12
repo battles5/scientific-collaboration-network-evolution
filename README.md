@@ -47,3 +47,16 @@ interval is simply
 ***P(k)*** can be obtained after determining the ***t<sub>i</sub>(k<sub>i</sub>)*** dependence. This will be done using a numerical method
 offered by the ```networkx``` library.
 
+In this project we will simulate the social complex network with preferential attachment using an analytical approach alongside a numerical one.
+
+
+# Structure of the project
+This project consists of two parts:
+1. A graphic user interface ([GUI](GUI.py)), that is an interactive tool through which the simulation can be performed (continuously or gradually) and contextually displayed.
+It has two windows, one where the graph is represented dynamically, one where the user can run the simulation.
+2. A program
+
+
+
+
+The following code simulates the model using ***graph*** modelling through ```networkx``` library. The main steps are:
