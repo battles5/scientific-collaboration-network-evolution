@@ -36,3 +36,14 @@ Taking into account that new links join the system with a constant rate, **β**,
 <img src="https://latex.codecogs.com/svg.image?\large&space;k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left&space;(&space;\frac{2&plus;\alpha&space;t}{2&plus;\alpha&space;t_{i}}&space;\right&space;)^{3}}" title="https://latex.codecogs.com/svg.image?\large k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left ( \frac{2+\alpha t}{2+\alpha t_{i}} \right )^{3}}" />
 
 This will be the **Master Equation**.
+
+A quantity of major interest is the degree distribution, ***P(k)***. The nodes join the
+system randomly at a constant rate, which implies that the ti values are uniformly
+distributed in time between ***0*** and ***t***. The distribution function for the ti in the ***[0; t]***
+interval is simply
+
+<img src="https://latex.codecogs.com/svg.image?\large&space;\rho&space;(t)=1/t&space;" title="https://latex.codecogs.com/svg.image?\large \rho (t)=1/t " />
+
+***P(k)*** can be obtained after determining the ***t<sub>i</sub>(k<sub>i</sub>)*** dependence. This will be done using a numerical method
+offered by the ```networkx``` library.
+
