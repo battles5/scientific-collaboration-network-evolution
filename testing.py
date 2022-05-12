@@ -36,15 +36,14 @@ def test_links_node_i_at_t(t, alpha, b):
     for i in ti:
         # Calculate the result of the master equation given the parameters.
         v = b * math.sqrt(t / i) * math.sqrt(((2 + alpha * t) / (2 + alpha * i)) ** 3)
-        # Test if the result of master equation is always positive.
-        # assert v > 0
         # Add the resault to the links list.
         ki.append(v)
         # Test if the calculated value is different from the previous one.
         if i > 2:
-            assert ki[i-1] != v
-    # Test if the number of elements in the links list is actually the same of time steps.
-    assert len(ki) == len(ti)
+            assert ki[i-2] != v
+    for j in range(len(ki)):
+        # Test if the results of master equation are always positive.
+        assert ki[j] > 0
     return ki
 
 
