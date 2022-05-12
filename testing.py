@@ -45,6 +45,7 @@ def test_links_node_i_at_t(t, alpha, b):
         # Cycling for testing if the results of master equation are always positive.
     for j in range(len(ki)):
         assert ki[j] > 0
+    assert sorted(ki) == ki
     return ki
 
 @given(t = st.integers(), alpha = st.floats(), b = st.integers(0, b))
@@ -68,6 +69,7 @@ def test_average_links_at_t(t, alpha, b):
     for j in range(len(averages)):
         # Test if the averages are always positive.
         assert averages[j] > 0
+    assert sorted(averages) == averages
     return averages
 
 if __name__ == "main":
