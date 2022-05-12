@@ -1,5 +1,4 @@
-# Social network of
-scientific collaborations evolution model
+# Social network of scientific collaborations evolution model
 
 ##Introduction
 The co-authorship network of scientists represents a prototype of complex evolving networks.
