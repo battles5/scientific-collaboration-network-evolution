@@ -46,6 +46,17 @@ def test_links_node_i_at_t(t, alpha, b):
         assert ki[j] > 0
     return ki
 
+@given(t = st.integers(), alpha = st.floats(), b = st.integers(0, b))
+@settings(max_examples = 1, suppress_health_check=HealthCheck.all())
+def test_average_links_at_t(t, alpha, b):
+    y = []
+    i = 1
+    while i <= t:
+        v = links_node_i_at_t(i, alpha, b)
+        ki = mean(v)
+        y.append(ki)
+        i += 1
+    return y
 
 if __name__ == "main":
     pass
