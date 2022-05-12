@@ -44,7 +44,7 @@ def test_links_node_i_at_t(t, alpha, b):
         if i > 2:
             assert ki[i-1] != v
     # Test if the number of elements in the links list is actually the same of time steps.
-    # assert len(ki) == len(ti)
+    assert len(ki) == len(ti)
     return ki
 
 
