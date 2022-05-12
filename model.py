@@ -20,11 +20,11 @@ beta = config.getint('settings', 'beta')
 b = config.getint('settings', 'b')
 N = config.getint('settings', 'N')
 alpha = a/b
-t = N/beta
+t = int(N/beta)
 nlist = list(range(1, int(beta * t + 1), int(beta)))
 
 # -----------------------------------
-# Main part of the code
+# Main part
 # -----------------------------------
 # ------ First part ------
 # Initialization and computation of the evolution of the network.
@@ -100,7 +100,7 @@ domain = range(len(Pk))
 # -----------------------------------
 # Plotting part
 # -----------------------------------
-# Here a figure with 4 subplots is generated.
+# Here, a figure with 4 subplots is generated.
 x1 = nlist
 y1 = kaverage
 
