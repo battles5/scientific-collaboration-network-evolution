@@ -39,13 +39,12 @@ def test_links_node_i_at_t(t, alpha, b):
         v = b * math.sqrt(t / i) * math.sqrt(((2 + alpha * t) / (2 + alpha * i)) ** 3)
         # Add the resault to the links list.
         ki.append(v)
-        # Test if the calculated value is different from the previous one.
+        # Test if the calculated value is smaller than the previous one.
         if i > 2:
-            assert ki[i-2] != v
+            assert ki[i-2] > v
         # Cycling for testing if the results of master equation are always positive.
     for j in range(len(ki)):
         assert ki[j] > 0
-    assert sorted(ki) == ki
     return ki
 
 @given(t = st.integers(), alpha = st.floats(), b = st.integers(0, b))
@@ -69,6 +68,7 @@ def test_average_links_at_t(t, alpha, b):
     for j in range(len(averages)):
         # Test if the averages are always positive.
         assert averages[j] > 0
+    # Test if the averages list gets sorted values (according to model theory).
     assert sorted(averages) == averages
     return averages
 
