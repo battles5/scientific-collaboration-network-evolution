@@ -50,7 +50,7 @@ offered by the ```networkx``` library.
 In this project we will simulate the social complex network with preferential attachment using an analytical approach alongside a numerical one.
 
 
-# Structure of the project
+## Structure of the project
 This project consists of two parts:
 1. A graphic user interface ([GUI](GUI.py)), that is an interactive tool through which the simulation can be performed (continuously or gradually) and contextually displayed.
 It has two windows, one where the graph is represented dynamically, one where the user can run the simulation.
@@ -65,3 +65,4 @@ by ***a*** the number of newly created internal links per node in unit time: in 
 
 ### The graphic user interface
 These are the steps in order to start the simulation:
+1. 
