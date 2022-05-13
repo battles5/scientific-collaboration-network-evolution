@@ -106,7 +106,7 @@ To show you some results, this is how the simulation of a given configuration lo
 ### Description of the files
 
 This is how I structured the project:
-* In the [functions](functions.py) file I built the model analytical functions that calculate:
+* In the [functions](functions.py) file I built the model analytical functions, based on the **Master Equation**, that calculate:
   * the evolution of the links that node i has at time step ***t***, which returns an ordered list of values
   representing the number of links that a node ***i*** has at each time step until ***t***. Its size will be ***t***;
   * the average number of links per node of the graph (network representation) at ***t*** time steps that return a list containing all
@@ -128,7 +128,7 @@ file is executed.
 * The [simulation](simulation.py) file contains all the functions to simulate network
 growth by generating a graph and growing it following preferential attachment through
 the ```networkx``` and ```tkinter``` libraries. These functions envoke the GUI at each step.
-The main functions ("steps") are:
+The main functions (steps of the process) are:
   * **initialize**, namely the initial state where a graph is been created and
   initial conditions are assigned;
   * **observe**, in which the graph is visualized through the GUI;
@@ -136,4 +136,17 @@ The main functions ("steps") are:
   * **update**, the last step, where the graph and parameters are updated and the GUI
   envoked to change the nodes position in order to avoid overlapping
   with newly generated nodes.
-* The [model](model.py) file, finally, 
+* In the [model](model.py) file, finally, there is the main part of the code,
+in which I used the [functions](functions.py) file to calculate the connectivity,
+clustering coefficient and diameter of a numerically simulated graph (using the graph class of ```networkx```).
+Since a network can be mathematically represented by a **graph**, what governs the evolution of a graph, as we said, is
+**Master Equation**. What we want to show is the consistency with the empirical results produced by a study on real datasets
+[ [1](https://arxiv.org/pdf/cond-mat/0104162.pdf) ] and to show that as the fundamental parameters vary, different
+results are obtained: the network goes from being **scale-free** to not being scale-free in relation to the joining rate.
+Using this model, it is possible to visualize what is the critical value of connectivity for switching to scale-free dynamics.
+Again, I used the ConfigParser library to import the configuration file from the command line and pass its parameters to the program.
+
+
+## References
+[1] [L. Barabasi et. al. - _Evolution of the social network of scientific collaborations_, (2008) - doi: https://doi.org/10.1016/S0378-4371(02)00736-7 
+](https://arxiv.org/pdf/cond-mat/0104162.pdf).
