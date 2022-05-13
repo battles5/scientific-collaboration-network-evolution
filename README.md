@@ -77,8 +77,15 @@ of total nodes to be reached during the simulation and the number of new links t
 node creates and the joining rate, so the user has to specify the configuration he wants as
 it is described in the previous section. In order to start, when launching the simulation or the model file, the user has to execute it from the command
 line with the syntax "**python simulation.py name_of_the_configuration**" (in our case, configuration.txt).
-2. 
-3. ![](gif/Animation2.gif)
-4. ![](gif/Animation.gif)
-5. 
+2. When this is done, the user will see two windows open, one for dynamic visualization of the network, the other for managing it.
+In the latter there are two frames: "run" and "settings." By clicking on the second one,
+it is possible to vary the number of time steps to be executed before updating the network ("step size"),
+as well as the time to update the image displayed in the other window ("step visualization delay in ms"). That parameter
+is meant to avoid problems of slowing down or crashing the application that occur at when N has a very high value.
+![](gif/Animation2.gif)
+3. With these parameters set, the simulation can be started continuously by pressing the "run" button in the other frame.
+In case you want to analyze one time step at a time, simply click in "step once." Having conducted the analysis it is possible, finally, to reset and repeat the operations ("reset button").
+![](gif/Animation.gif)
+
+
 
