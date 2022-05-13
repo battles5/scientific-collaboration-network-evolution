@@ -6,10 +6,16 @@ Created on Sun Apr 17 10:13:47 2022
 import GUI
 from pylab import *
 import networkx as nx
+import configparser
 
-m0 = 5 # Number of nodes in initial condition
-m = 1 # Number of edges per new node
-s = 10 # Number of steps for growing the network
+# Getting information from configuration.txt file
+DEFAULTS = "configuration.txt"
+config = configparser.ConfigParser()
+config.read(DEFAULTS)
+
+m0 = config.getfloat('settings', 'm0') # Number of nodes in initial condition
+m = config.getfloat('settings', 'm') # Number of edges per new node
+s = config.getfloat('settings', 's') # Number of steps for growing the network
 
 # -----------------------------------
 # Main functions of the network simulation
