@@ -62,8 +62,9 @@ The user can choose whether to start the [simulation](simulation.py) using the G
 Before this, the user has to set the configuration parameters of the network, indicating them in the [configuration](configuration.txt) file,
 or eventually write a new one, using the syntax of configuration; if the user wants to do so, he has to be careful
 to include as values of ***N*** (the number of total nodes to be reached during the simulation),
-***b*** (the number of new links that an incoming node creates) and **β** (the joining rate) **only natural numbers**. We denote
-by ***a*** the number of newly created internal links per node in unit time: in this case you have to enter a value between ***0*** and ***1***.
+***b*** (the number of new links that an incoming node creates), ***s*** (the number of steps for growing the network),
+***m*** (the number of edges per new node), ***m<sub>0</sub>*** (the number of nodes in initial condition) and ***β*** (the joining rate), **only natural numbers**.
+We denote by ***a*** the number of newly created internal links per node in unit time: in this case you have to enter a value between ***0*** and ***1***.
 
 ### The graphic user interface
 This very simple dinamic and interactive GUI is realized using the Python 3.9 inbuilt [tkinter](https://docs.python.org/3/library/tkinter.html) package.
@@ -77,7 +78,7 @@ node creates and the joining rate, so the user has to specify the configuration 
 it is described in the previous section. In order to start, when launching the simulation or the model file, the user has to execute it from the command
 line with the syntax "**python simulation.py name_of_the_configuration**" (in our case, configuration.txt).
 2. 
-3. 
+3. ![](gif/Animation2.gif)
 4. ![](gif/Animation.gif)
 5. 
 
