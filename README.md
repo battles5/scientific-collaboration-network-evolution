@@ -31,7 +31,7 @@ network:
 In the model, we assume that the number of authors on a paper, ***m***, is constant. In
 reality ***m*** is a stochastic variable, as the number of authors varies from paper to paper: making ***m*** a stochastic variable is not expected to change the scaling behavior.
 
-Taking into account that new links join the system with a constant rate, **β**, the continuum equation for the evolution of the number of links node i has can be written as:
+Taking into account that new links join the system with a constant rate, ***β***, the continuum equation for the evolution of the number of links node i has can be written as:
 
 <img src="https://latex.codecogs.com/svg.image?\large&space;k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left&space;(&space;\frac{2&plus;\alpha&space;t}{2&plus;\alpha&space;t_{i}}&space;\right&space;)^{3}}" title="https://latex.codecogs.com/svg.image?\large k_{i}(t)=b\sqrt{\frac{t}{t_{i}}}\sqrt{\left ( \frac{2+\alpha t}{2+\alpha t_{i}} \right )^{3}}" />
 
@@ -93,11 +93,33 @@ finally, to reset and repeat the operations ("reset button").
 To start the simulation of the model, simply:
 1. Like in GUI step 1, choose the simulation parameters and edit them in configuration.txt.
 2. Even in this case launch the simulation file (that imports its parameters from the configuration)
-with the command line, using same syntax "python simulation.py configuration_name" run the code.
+with the command line, using same syntax "**python simulation.py configuration_name**" run the code.
 3. At the end of the process the results will be plotted. A window will open with four representative subplots:
-    * the average connectivity, diameter and cluster coefficient as a function of the population of nodes in the graph;
-    * the probability distribution of connectivity on a logarithmic scale.
+    * the **average connectivity**, **diameter** and **cluster coefficient** as a function of the population of nodes in the graph;
+    * the **probability distribution of connectivity** on a logarithmic scale.
 
 To show you some results, this is how the simulation of a given configuration looks like
 
 ![](img/Figure_1.png)
+
+
+### Description of the files
+
+This is how I structured the project:
+* In the [functions](functions.py) file I built the model analytical functions that calculate:
+  * the evolution of the links that node i has at time step ***t***, which returns an ordered list of values
+  representing the number of links that a node ***i*** has at each time step until ***t***. Its size will be ***t***;
+  * the average number of links per node of the graph (network representation) at ***t*** time steps that return a list containing all
+  the value for each time step until ***t***.
+* In the [testing](testing.py) file, I tested both analytic functions in the model to make sure they all work correctly,
+using hypothesis tests.
+* The [configuration](configuration.txt) file contains all the parameter definitions used in the simulation and model files.
+It is a .txt file that is imported to start the two scripts. In detail, it contains:
+  * ***a*** (default = 0.001) that is the number of newly created internal links per node in unit time;
+  * ***β*** (default = 1) which is the joining rate;
+  * ***N*** (default = 200) that is the number of total nodes to be reached during the simulation;
+  * ***b*** (default = 2) that is the number of new links that an incoming node creates;
+  * ***m<sub>0</sub>*** (default = 5) that is the number of nodes at initial condition;
+  * ***m*** (default = 1) which is the number of edges created per new node;
+  * ***s*** (default = 10) that is the number of steps for growing the network.
+*
