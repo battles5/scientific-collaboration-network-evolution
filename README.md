@@ -80,12 +80,24 @@ line with the syntax "**python simulation.py name_of_the_configuration**" (in ou
 2. When this is done, the user will see two windows open, one for dynamic visualization of the network, the other for managing it.
 In the latter there are two frames: "run" and "settings." By clicking on the second one,
 it is possible to vary the number of time steps to be executed before updating the network ("step size"),
-as well as the time to update the image displayed in the other window ("step visualization delay in ms"). That parameter
-is meant to avoid problems of slowing down or crashing the application that occur at when N has a very high value.
+as well as the time to update the image displayed in the other window ("step visualization delay in ms").
+That parameter is meant to avoid problems of slowing down or crashing the application that occur at when N has a very high value.  
 ![](gif/Animation2.gif)
 3. With these parameters set, the simulation can be started continuously by pressing the "run" button in the other frame.
-In case you want to analyze one time step at a time, simply click in "step once." Having conducted the analysis it is possible, finally, to reset and repeat the operations ("reset button").
+In case you want to analyze one time step at a time, simply click in "step once." Having conducted the analysis it is possible,
+finally, to reset and repeat the operations ("reset button").  
 ![](gif/Animation.gif)
 
 
+### Model simulation
+To start the simulation of the model, simply:
+1. Like in GUI step 1, choose the simulation parameters and edit them in configuration.txt.
+2. Even in this case launch the simulation file (that imports its parameters from the configuration)
+with the command line, using same syntax "python simulation.py configuration_name" run the code.
+3. At the end of the process the results will be plotted. A window will open with four representative subplots:
+    * the average connectivity, diameter and cluster coefficient as a function of the population of nodes in the graph;
+    * the probability distribution of connectivity on a logarithmic scale.
 
+To show you some results, this is how the simulation of a given configuration looks like
+
+![](img/Figure_1.png)
