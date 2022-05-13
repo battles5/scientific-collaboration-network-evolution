@@ -47,22 +47,34 @@ interval is simply
 ***P(k)*** can be obtained after determining the ***t<sub>i</sub>(k<sub>i</sub>)*** dependence. This will be done using a numerical method
 offered by the ```networkx``` library.
 
-In this project we will simulate the social complex network with preferential attachment using an analytical approach alongside a numerical one.
+In this project we will simulate the social complex network with preferential attachment using a numerical approach alongside an analytical one.
 
 
 ## Structure of the project
 This project consists of two parts:
-1. A graphic user interface ([GUI](GUI.py)), that is an interactive tool through which the simulation can be performed (continuously or gradually) and contextually displayed.
+1. A graphic user interface ([GUI](GUI.py)), that is an interactive tool through which the simulation
+can be performed (continuously or gradually) and contextually displayed.
 It has two windows, one where the graph is represented dynamically, one where the user can run the simulation.
 2. A program ([model](model.py)) that numerically simulates the network dynamics following the analytical 
 framework described above and plots the results.
 
-The user can choose whether to start the [GUI](GUI.py) or the [model](model.py) first.
+The user can choose whether to start the [simulation](simulation.py) using the GUI or the [model](model.py) first.
 Before this, the user has to set the configuration parameters of the network, indicating them in the [configuration](configuration.txt) file,
-or eventually write a new one, using the syntax of configuration; if the user wants to do so, he has to be careful to include as values of ***N*** (the number of total nodes to be reached during the simulation),
+or eventually write a new one, using the syntax of configuration; if the user wants to do so, he has to be careful
+to include as values of ***N*** (the number of total nodes to be reached during the simulation),
 ***b*** (the number of new links that an incoming node creates) and **β** (the joining rate) **only natural numbers**. We denote
 by ***a*** the number of newly created internal links per node in unit time: in this case you have to enter a value between ***0*** and ***1***.
 
 ### The graphic user interface
-These are the steps in order to start the simulation:
-1. 
+This very simple dinamic and interactive GUI is realized using the Python 3.9 inbuilt [tkinter](https://docs.python.org/3/library/tkinter.html) package.
+```tkinter``` package (“Tk interface”) is the standard Python interface of the Tk GUI toolkit.
+These are the steps in order to start the simulation using the GUI:
+1. First, the user has to launch the file [simulation](simulation.py) which imports its
+parameters from configuration using [ConfigParser](https://docs.python.org/3/library/configparser.html) library;
+there could be different types of configurations for the model, depending on the number
+of total nodes to be reached during the simulation and the number of new links that an incoming
+node creates and the joining rate, so the user has to specify the configuration he wants as
+it is described in the previous section. In order to start, when launching the simulation or the model file, the user has to execute it from the command
+line with the syntax "**python simulation.py name_of_the_configuration**" (in our case, configuration.txt).
+2. 
+
