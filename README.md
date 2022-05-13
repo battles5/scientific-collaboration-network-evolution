@@ -122,4 +122,18 @@ It is a .txt file that is imported to start the two scripts. In detail, it conta
   * ***m<sub>0</sub>*** (default = 5) that is the number of nodes at initial condition;
   * ***m*** (default = 1) which is the number of edges created per new node;
   * ***s*** (default = 10) that is the number of steps for growing the network.
-*
+* The [GUI](GUI.py) si the base module. It provides a set of widgets in the form of Python classes
+through which the graphic interface can be built. This file is envoked each time the [simulation](simulation.py)
+file is executed.
+* The [simulation](simulation.py) file contains all the functions to simulate network
+growth by generating a graph and growing it following preferential attachment through
+the ```networkx``` and ```tkinter``` libraries. These functions envoke the GUI at each step.
+The main functions ("steps") are:
+  * **initialize**, namely the initial state where a graph is been created and
+  initial conditions are assigned;
+  * **observe**, in which the graph is visualized through the GUI;
+  * **pref_select**, where the graph is grown according to preferential attchment;
+  * **update**, the last step, where the graph and parameters are updated and the GUI
+  envoked to change the nodes position in order to avoid overlapping
+  with newly generated nodes.
+* The [model](model.py) file, finally, 
