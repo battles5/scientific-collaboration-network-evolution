@@ -13,9 +13,9 @@ DEFAULTS = "configuration.txt"
 config = configparser.ConfigParser()
 config.read(DEFAULTS)
 
-m0 = config.getfloat('settings', 'm0') # Number of nodes in initial condition
-m = config.getfloat('settings', 'm') # Number of edges per new node
-s = config.getfloat('settings', 's') # Number of steps for growing the network
+m0 = config.getint('settings', 'm0') # Number of nodes in initial condition
+m = config.getint('settings', 'm') # Number of edges per new node
+s = config.getint('settings', 's') # Number of steps for growing the network
 
 # -----------------------------------
 # Main functions of the network simulation
