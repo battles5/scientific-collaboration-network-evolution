@@ -77,4 +77,7 @@ node creates and the joining rate, so the user has to specify the configuration 
 it is described in the previous section. In order to start, when launching the simulation or the model file, the user has to execute it from the command
 line with the syntax "**python simulation.py name_of_the_configuration**" (in our case, configuration.txt).
 2. 
+3. 
+4. ![](gif/Animation.gif)
+5. 
 
