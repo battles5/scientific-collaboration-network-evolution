@@ -18,7 +18,7 @@ def links_node_i_at_t(t, alpha, b):
            b : average number of new links that an incoming node creates.
 
        Returns:
-           The number of links node i has at the time step t.
+           A list with the number of links node i has for each time step t.
 
        Raise:
            ValueError if t, alpha and b are less or equal to zero, t and b are not a integer."""
@@ -44,7 +44,7 @@ def average_links_at_t(t, alpha, b):
            b : average number of new links that an incoming node creates.
 
        Returns:
-           The average number of links that each node has in the network at time after t steps.
+           A list of the average number of links that each node has in the network at time after t steps.
 
        Raise:
            ValueError if t, alpha and b are less or equal to zero or t and b are not a integer."""
