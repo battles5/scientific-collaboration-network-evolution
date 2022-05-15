@@ -93,7 +93,7 @@ finally, to reset and repeat the operations ("reset button").
 To start the simulation of the model, simply:
 1. Like in GUI step 1, choose the simulation parameters and edit them in configuration.txt.
 2. Even in this case launch the simulation file (that imports its parameters from the configuration)
-with the command line, using same syntax "**python model.py configuration.txt**" run the code.
+with the command line, using same syntax "**python model.py configuration.txt**".
 3. At the end of the process the results will be plotted. A window will open with four representative subplots:
     * the **average connectivity**, **diameter** and **cluster coefficient** as a function of the population of nodes in the graph;
     * the **probability distribution of connectivity** on a logarithmic scale.
