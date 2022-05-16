@@ -38,7 +38,7 @@ Taking into account that new links join the system with a constant rate, ***β**
 This will be the **Master Equation**.
 
 A quantity of major interest is the degree distribution, ***P(k)***. The nodes join the
-system randomly at a constant rate, which implies that the ti values are uniformly
+system randomly at a constant rate, which implies that the ***t<sub>i</sub>*** values are uniformly
 distributed in time between ***0*** and ***t***. The distribution function for the ti in the ***[0; t]***
 interval is simply
 
