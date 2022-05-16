@@ -19,6 +19,7 @@ further papers. We consider also that new researchers join the field at a consta
 
 The average number of links per node in the system at time t is thus given by
 
+<img src="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" title="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" />
 
 Now, we define the rules that govern our evolving network model, capturing the basic mechanism governing the evolution of the co-authorship
 network:
