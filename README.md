@@ -19,7 +19,6 @@ further papers. We consider also that new researchers join the field at a consta
 
 The average number of links per node in the system at time t is thus given by
 
-<img src="https://latex.codecogs.com/svg.image?\large&space;\left<k\right>=\frac{T(t)}{N(t)}" title="https://latex.codecogs.com/svg.image?\large \left<k\right>=\frac{T(t)}{N(t)}" />
 
 Now, we define the rules that govern our evolving network model, capturing the basic mechanism governing the evolution of the co-authorship
 network:
@@ -42,6 +41,7 @@ system randomly at a constant rate, which implies that the ***t<sub>i</sub>*** v
 distributed in time between ***0*** and ***t***. The distribution function for the ti in the ***[0; t]***
 interval is simply
 
+<img src="https://latex.codecogs.com/svg.image?\large&space;\rho&space;(t)=1/t&space;" title="https://latex.codecogs.com/svg.image?\large \rho (t)=1/t " />
 
 ***P(k)*** can be obtained after determining the ***t<sub>i</sub>(k<sub>i</sub>)*** dependence. This will be done using a numerical method
 offered by the ```networkx``` library.
