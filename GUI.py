@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 import warnings
 import platform
 import sys
+from tkinter import *
+from tkinter.ttk import Notebook
 
 # Suppressing matplotlib deprecation warnings
 # Updated 02/05/2022
@@ -28,15 +30,6 @@ if platform.system() == 'Windows':
 else:  # SM 3/28/2020
     backend = 'Qt5Agg'
 matplotlib.use(backend)
-
-# Version check
-# Updated 02/05/2022
-if sys.version_info[0] == 3:  # Python 3
-    from tkinter import *
-    from tkinter.ttk import Notebook
-else:  # Python 2
-    from Tkinter import *
-    from ttk import Notebook
 
 class GUI:
 
