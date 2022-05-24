@@ -92,7 +92,7 @@ class GUI:
         self.buttonRun = Button(self.frameRun, width=30, height=2, textvariable=self.runPauseString, command=self.runEvent)
         self.buttonRun.pack(side=TOP, padx=5, pady=5)
 
-        # buttonStep
+        # buttonStepOnce
         self.buttonStep = Button(self.frameRun, width=30, height=2, text='Step Once', command=self.stepOnce)
         self.buttonStep.pack(side=TOP, padx=5, pady=5)
 
