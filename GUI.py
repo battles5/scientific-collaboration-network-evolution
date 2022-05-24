@@ -60,10 +60,10 @@ class GUI:
 
         # Root window with tkinter
         self.rootWindow = Tk()
-        self.statusText = StringVar(self.rootWindow, value=self.statusStr)  # at this point, statusStr =
+        self.statusText = StringVar(self.rootWindow, value=self.statusStr)
 
         # Graphic default settings
-        self.rootWindow.wm_title(self.titleText)  # titleText = 'PyCX Simulator'
+        self.rootWindow.wm_title(self.titleText)
         self.rootWindow.protocol('WM_DELETE_WINDOW', self.quitGUI)
         self.rootWindow.geometry('450x250')
         self.rootWindow.columnconfigure(0, weight=1)
