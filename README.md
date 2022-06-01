@@ -2,12 +2,10 @@
 
 ## Introduction
 The co-authorship network of scientists represents a prototype of complex evolving networks.
-I propose a simple model that captures the network’s time evolution and a numerical simulation to uncover the behavior of
-quantities that could not be predicted analytically. The combined numerical and analytical results
-underline the important role internal links play in determining the observed scaling behavior and
-network topology. The results and methodologies developed in the context of the co-authorship
-network could be useful for a systematic study of other complex evolving networks as well,
-such as the world wide web, Internet, or other social networks.
+This project is designed to simulate the behavior of such a complex network,
+providing a graphical interface to visualize the evolution and change its parameters,
+even during the process, and a model simulation that shows the results as plots.
+the analytical model, on which this work is based, is described in [this reference](https://arxiv.org/pdf/cond-mat/0104162.pdf).
 
 ## Network model
 In order to build the model, we denote by ***k<sub>i</sub>(t)*** the number of links node ***i*** has at time ***t***; by ***T(t)*** and ***N(t)*** the
