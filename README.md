@@ -5,7 +5,7 @@ The co-authorship network of scientists represents a prototype of complex evolvi
 This project is designed to simulate the behavior of such a complex network,
 providing a graphical interface to visualize the evolution and change its parameters,
 even during the process, and a model simulation that shows the results as plots.
-the analytical model, on which this work is based, is described in [this reference](https://arxiv.org/pdf/cond-mat/0104162.pdf).
+The analytical model, on which this work is based, is described in [this reference](https://arxiv.org/pdf/cond-mat/0104162.pdf).
 
 ## Network model
 In order to build the model, we denote by ***k<sub>i</sub>(t)*** the number of links node ***i*** has at time ***t***; by ***T(t)*** and ***N(t)*** the
@@ -13,11 +13,11 @@ total number of links and total number of nodes at time ***t***, respectively.
 In addition, we assume that all nodes present in the system are active, i.e., they can author
 further papers. We consider also that new researchers join the field at a constant rate, leading to
 
-<img src="https://latex.codecogs.com/svg.image?\large&space;N(t)=\beta&space;t" title="https://latex.codecogs.com/svg.image?\large N(t)=\beta t" />
+[<img src="https://latex.codecogs.com/svg.image?\large&space;N(t)=\beta&space;t" title="https://latex.codecogs.com/svg.image?\large N(t)=\beta t" />](https://latex.codecogs.com/svg.image?N(t)=%5Cbeta%20t)
 
 The average number of links per node in the system at time t is thus given by
 
-<img src="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" title="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" />  
+[<img src="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" title="https://latex.codecogs.com/svg.image?\left<k\right>=\frac{T(t)}{N(t)}" />](https://latex.codecogs.com/svg.image?%5Cleft%3Ck%5Cright%3E=%5Cfrac%7BT(t)%7D%7BN(t)%7D)  
 
 Now, we define the rules that govern our evolving network model, capturing the basic mechanism governing the evolution of the co-authorship
 network:
