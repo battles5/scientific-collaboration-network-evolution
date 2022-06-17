@@ -9,7 +9,8 @@ from statistics import mean
 
 
 def links_node_i_at_t(t, alpha, b):
-    """This method computes the evolution of the links' node "i" has.
+    """
+    This method computes the evolution of the links' node "i" has.
 
        Parameters
            t : total steps of the simulation.
@@ -21,7 +22,8 @@ def links_node_i_at_t(t, alpha, b):
            A list with the number of links node "i" has for each time step t.
 
        Raise:
-           ValueError if t, alpha and b are less or equal to zero, t and b are not an integer."""
+           ValueError if t, alpha and b are less or equal to zero, t and b are not an integer.
+    """
     if t <= 0 or alpha <= 0 or b <= 0:
         raise ValueError('Time steps, alpha and b values must be positive, but are {}, {} and {}'.format(t, alpha, b))
     if type(t) != int or type(b) != int:
@@ -35,7 +37,8 @@ def links_node_i_at_t(t, alpha, b):
 
 
 def average_links_at_t(t, alpha, b):
-    """This method computes the average of links per node in the network at t time steps.
+    """
+    This method computes the average of links per node in the network at t time steps.
 
        Parameters
            t : total steps of the simulation.
@@ -45,7 +48,8 @@ def average_links_at_t(t, alpha, b):
 
        Returns:
            A list of the average number of links that each node has in the network at time after t steps
-           (average links distribution at time-step t)."""
+           (average links distribution at time-step t).
+    """
     y = []
     i = 1
     while i <= t:
@@ -57,7 +61,8 @@ def average_links_at_t(t, alpha, b):
 
 
 def evolve(t, beta, b):
-    """This module simulates the Barabasi-Albert model of network growth, according to preferential attachment,
+    """
+    This module simulates the Barabasi-Albert model of network growth, according to preferential attachment,
             for a given time, joining rate and the number of new links that an incoming node creates.
             This also performs measurements on the network: it produces three lists containing the diameter,
             population and cluster coefficient values at each time step.
@@ -71,7 +76,8 @@ def evolve(t, beta, b):
            Clustering coefficient, diameter and population measurements at each time step.
 
        Raise:
-           ValueError if t, alpha and b are less or equal to zero or t and b are not an integer."""
+           ValueError if t, alpha and b are less or equal to zero or t and b are not an integer.
+    """
     diameters = []
     population = []
     clustcoefficient = []
@@ -88,7 +94,8 @@ def evolve(t, beta, b):
 
 
 def kdistrubution(N, b):
-    """This method calculates the degree distribution, P(k). The nodes join the
+    """
+    This method calculates the degree distribution, P(k). The nodes join the
             system randomly at a constant rate, which implies that the "ti" values are
             uniformly distributed in time between 0 and t. The distribution function
             for the "ti" in the [0; t] interval is simply rho(t) = 1/t.
@@ -98,7 +105,8 @@ def kdistrubution(N, b):
 
     Returns:
         The calculated degree distribution P(k) given all network nodes' degrees
-        and a counter list of nodes to subsequently generate plots"""
+        and a counter list of nodes to subsequently generate plots
+    """
     g = nx.barabasi_albert_graph(N, b)
     Pk = [float(j) / N for j in nx.degree_histogram(g)]
     domain = range(len(Pk))
