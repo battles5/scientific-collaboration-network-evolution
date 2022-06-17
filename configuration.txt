@@ -1,7 +1,7 @@
 [settings]
 a = 0.001
 beta = 1
-N = 200
+N = 100
 b = 2
 m0 = 5
 m = 1
