@@ -98,7 +98,7 @@ with the command line, using same syntax "**python model.py configuration.txt**"
 
 To show you some results, this is how the simulation of a given configuration looks like
 
-![](img/Figure_1.png)
+![](img/model_plots.png)
 
 
 ### Description of the files
