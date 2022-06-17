@@ -15,28 +15,28 @@ import matplotlib
 import matplotlib.pyplot as plt
 import warnings
 import platform
-import sys
 from tkinter import *
 from tkinter.ttk import Notebook
 
 # Suppressing matplotlib deprecation warnings
 # Updated 02/05/2022
-warnings.filterwarnings("ignore", category = matplotlib.cbook.MatplotlibDeprecationWarning)
+warnings.filterwarnings("ignore", category=matplotlib.cbook.MatplotlibDeprecationWarning)
 
 # System check (added later)
 # Updated 02/05/2022
 if platform.system() == 'Windows':
     backend = 'TkAgg'
-else:  # SM 3/28/2020
+else:
     backend = 'Qt5Agg'
 matplotlib.use(backend)
+
 
 class GUI:
 
     # Constructor
     def __init__(self, title='Network Evolution GUI', interval=0, stepSize=1, parameterSetters=[]):
 
-        # GUI variables inside the costructor
+        # GUI variables inside the constructor
 
         # General project variables (such as main title, ...)
         self.titleText = title
@@ -74,15 +74,16 @@ class GUI:
 
         # There will be two frames: Run and Settings.
         # Below there is the variables list and default settings for
-        # each frames.
+        # each frame.
 
         # -----------------------------------
-        # frameRun
+        # frame  Run
         # -----------------------------------
         # buttonRun
-        self.runPauseString = StringVar(self.rootWindow)  # added "self.rootWindow" by Hiroki Sayama 10/09/2018
+        self.runPauseString = StringVar(self.rootWindow)
         self.runPauseString.set("Run")
-        self.buttonRun = Button(self.frameRun, width=30, height=2, textvariable=self.runPauseString, command=self.runEvent)
+        self.buttonRun = Button(self.frameRun, width=30, height=2,
+                                textvariable=self.runPauseString, command=self.runEvent)
         self.buttonRun.pack(side=TOP, padx=5, pady=5)
 
         # buttonStepOnce
@@ -94,7 +95,7 @@ class GUI:
         self.buttonReset.pack(side=TOP, padx=5, pady=5)
 
         # -----------------------------------
-        # frameSettings
+        # frame Settings
         # -----------------------------------
         can = Canvas(self.frameSettings)
 
@@ -120,39 +121,51 @@ class GUI:
 
         can.pack(side='top')
 
-    # Function that defines the new status of the system at any start.
+    # ------ Status of the system ------
     def setStatusStr(self, newStatus):
+        """
+        Function that defines the new status of the system at any start.
+        """
         self.statusStr = newStatus
         self.statusText.set(self.statusStr)
 
     # ------ Model control functions for changing parameters ------
-    # This let the user decide how many time steps the simulation
-    # run before it is upgraded.
     def changeStepSize(self, val):
+        """
+        This let the user decide how many time-steps the simulation
+        run before it is upgraded.
+        """
         self.stepSize = int(val)
 
-    # This function let the user decide the upgrading frequency
-    # of the visualization, setting the temporal
-    # interval in ms.
     def changeStepDelay(self, val):
+        """
+        This function let the user decide the upgrading frequency
+        of the visualization, setting the temporal nterval in ms.
+        """
         self.timeInterval = int(val)
 
-    # This function sets the chosen parameters and saves them.
     def saveParametersCmd(self):
+        """
+        This function sets the chosen parameters and saves them.
+        """
         for variableSetter in self.parameterSetters:
             variableSetter(float(self.varEntries[variableSetter].get()))
             self.setStatusStr("New parameter values have been set")
 
-    # This function sets the chosen parameters and saves them as
-    # initial conditions in order to start the simulation.
-    # It reset the initial condition invoking "resetModel()".
     def saveParametersAndResetCmd(self):
+        """
+        This function sets the chosen parameters and saves them as
+        initial conditions in order to start the simulation.
+        It reset the initial condition invoking "resetModel()".
+        """
         self.saveParametersCmd()
         self.resetModel()
 
     # ------ runEvent ------
-    # This event is envoked when "Run" button is clicked.
     def runEvent(self):
+        """
+        This event is envoked when "Run" button is clicked.
+        """
         self.running = not self.running
         if self.running:
             self.rootWindow.after(self.timeInterval, self.stepModel)
@@ -171,9 +184,11 @@ class GUI:
                 self.buttonSaveParametersAndReset.configure(state=NORMAL)
 
     # ------ stepModel ------
-    # This function calls and makes the modelStepFunc function working for a time step.
-    # This function is envoked when runEvent is active.
     def stepModel(self):
+        """
+        This function calls and makes the modelStepFunc function working for a time step.
+        This function is invoked when runEvent is active.
+        """
         if self.running:
             self.modelStepFunc()
             self.currentStep += 1
@@ -184,9 +199,11 @@ class GUI:
             self.rootWindow.after(int(self.timeInterval * 1.0 / self.stepSize), self.stepModel)
 
     # ------ stepOnce ------
-    # This function calls and makes the modelStepFunc function working for just a single time step.
-    # This function is envoked when "Step Once" button is clicked.
     def stepOnce(self):
+        """
+        This calls and makes the modelStepFunc function working for just a single time step.
+        This function is invoked when "Step Once" button is clicked.
+        """
         self.running = False
         self.runPauseString.set("Continue Run")
         self.modelStepFunc()
@@ -197,21 +214,25 @@ class GUI:
             self.buttonSaveParameters.configure(state=NORMAL)
 
     # ------ resetModel ------
-    # This function interrupts and takes the model to initial conditions.
-    # This function is envoked when "Reset" button is clicked.
     def resetModel(self):
+        """
+        This interrupts and takes the model to initial conditions.
+        This function is envoked when "Reset" button is clicked.
+        """
         self.running = False
         self.runPauseString.set("Run")
         self.modelInitFunc()
-        self.currentStep = 0;
+        self.currentStep = 0
         self.setStatusStr("Model has been reset")
         self.drawModel()
 
     # ------ drawModel ------
-    # This function activates the visualization window and shows the simulation state.
-    # If the visualization windows is already open it shows the simulation state.
     def drawModel(self):
-        plt.ion()  # SM 3/26/2020
+        """
+        This function activates the visualization window and shows the simulation state.
+        If the visualization windows is already open it shows the simulation state.
+        """
+        plt.ion()
         if self.modelFigure == None or self.modelFigure.canvas.manager.window == None:
             self.modelFigure = plt.figure()
         self.modelDrawFunc()
@@ -219,9 +240,11 @@ class GUI:
         plt.show()
 
     # ------ start ------
-    # This executes the "initialize", "observe" and "update" model functions taking them as arguments.
-    # This function is envoked at every execution.
     def start(self, func=[]):
+        """
+        This executes the "initialize", "observe" and "update" model functions taking them as arguments.
+        This function is envoked at every execution.
+        """
         if len(func) == 3:
             self.modelInitFunc = func[0]
             self.modelDrawFunc = func[1]
@@ -233,14 +256,15 @@ class GUI:
                 self.textInformation.delete(1.0, END)
                 self.textInformation.insert(END, self.modelInitFunc.__doc__.strip())
                 self.textInformation.config(state=DISABLED)
-
             self.modelInitFunc()
             self.drawModel()
         self.rootWindow.mainloop()
 
     # ------ quitGUI ------
-    # This function quit the graphic user interface and close all windows.
     def quitGUI(self):
+        """
+        This function quit the graphic user interface and close all windows.
+        """
         self.running = False
         self.rootWindow.quit()
         plt.close('all')
