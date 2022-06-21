@@ -13,34 +13,55 @@ DEFAULTS = "configuration.txt"
 config = configparser.ConfigParser()
 config.read(DEFAULTS)
 
-m0 = config.getint('settings', 'm0') # Number of nodes in initial condition
-m = config.getint('settings', 'm') # Number of edges per new node
-s = config.getint('settings', 's') # Number of steps for growing the network
+m0 = config.getint('settings', 'm0')  # Number of nodes in initial condition
+m = config.getint('settings', 'm')  # Number of edges per new node
+s = config.getint('settings', 's')  # Number of steps for growing the network
 
 # -----------------------------------
 # Main functions of the network simulation
 # -----------------------------------
 # ------ Step 1/4 ------
 def initialize():
+    """
+    This method initializes the system by instantiating a complete graph and setting
+    a "spring" layout.
+    It also sets the counter of time steps at zero value.
+    """
     # Defining g graph (networkx class) as a global variable
+    # We need it to modify the variable outside of the step functions.
+    # It is used to make changes to the variable in a local context, being instance g (graph)
+    # modified by nested methods within the following.
     global g
     # We start with a fully connected graph
     g = nx.complete_graph(m0)
     # We want to draw the graph using the nx "spring" layout for better visualization
+    # so we set it with .pos method
     g.pos = nx.spring_layout(g)
     g.count = 0
 
 # ------ Step 2/4 ------
 def observe():
+    """
+    This method cleans the axes of the precedent batch (if them are still present)
+    and draws the graph using the layout defined before.
+    """
     global g
-    # Cleaning axes (maybe we had a previous batch and we want to clean the graph axes)
+    # Cleaning axes (maybe we had a previous batch, and we want to clean the graph axes)
     cla()
     # Drawing the graph
     nx.draw(g, pos=g.pos)
 
-# ------ Step 3/4 ------
-# This function is used to select nodes based on the preferential attachment criterion.
 def pref_select(nds):
+    """
+    This method selects a node to connect with the incoming one
+    based on the preferential attachment criterion.
+
+        Parameters
+            nds : list of the graph's nodes.
+
+        Returns:
+            i : the chosen node to connect with.
+    """
     global g
     # Generating random value between 0 and the sum of all node's degree
     r = uniform(0, sum([g.degree(i) for i in nds]))
@@ -53,8 +74,15 @@ def pref_select(nds):
         if r <= x:
             return i
 
-# ------ Step 4/4 ------
+# ------ Step 3/4 ------
 def update():
+    """
+    this method updates the counter and system state by adding m link(s) to a new node
+    according to the preferential attachment criterion. It then generates and draws
+    the new network layout by placing the new node in (0, 0).
+    Finally, it generates a new network layout and reproduces the layout again to make
+    the representation dynamic and avoid overlapping between nodes.
+    """
     global g
     g.count += 1
     # The network grows once in every s steps
