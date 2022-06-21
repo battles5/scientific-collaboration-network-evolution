@@ -116,7 +116,7 @@ class GUI:
         self.stepDelay = Scale(can, from_=0, to=max(2000, self.timeInterval),
                                resolution=10, command=self.changeStepDelay, orient=HORIZONTAL, width=25, length=150)
         self.stepDelay.set(self.timeInterval)
-        # self.showHelp(self.stepDelay, "The visualization of each step is delays by the given number of milliseconds.")
+        self.showHelp(self.stepDelay, "The visualization of each step is delays by the given number of milliseconds.")
         self.stepDelay.pack(side='left')
 
         can.pack(side='top')
