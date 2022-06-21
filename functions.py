@@ -47,8 +47,8 @@ def average_links_at_t(t, alpha, b):
            b : average number of new links that an incoming node creates.
 
        Returns:
-           A list of the average number of links that each node has in the network at time after t steps
-           (average links distribution at time-step t).
+           A list of the average number of links that each node has
+           in the network at time after t steps (average links distribution at time-step t).
     """
     y = []
     i = 1
@@ -74,9 +74,6 @@ def evolve(t, beta, b):
 
        Returns:
            Clustering coefficient, diameter and population measurements at each time step.
-
-       Raise:
-           ValueError if t, alpha and b are less or equal to zero or t and b are not an integer.
     """
     diameters = []
     population = []
@@ -106,7 +103,13 @@ def kdistrubution(N, b):
     Returns:
         The calculated degree distribution P(k) given all network nodes' degrees
         and a counter list of nodes to subsequently generate plots
+    Raise:
+        ValueError if N and b are not natural numbers.
     """
+    if N <= 0 or b <= 0:
+        raise ValueError('Nodes (N) and b values must be positive, but are {} and {}'.format(N, b))
+    if type(N) != int or type(b) != int:
+        raise ValueError('N and b must be integers')
     g = nx.barabasi_albert_graph(N, b)
     Pk = [float(j) / N for j in nx.degree_histogram(g)]
     domain = range(len(Pk))
