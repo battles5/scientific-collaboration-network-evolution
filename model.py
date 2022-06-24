@@ -5,21 +5,21 @@ Created on Mon May 02 14:47:23 2022
 """
 import functions as fn
 import configparser
-from pylab import *
+import sys
 from math import e
 from matplotlib import pyplot as plt
+from matplotlib import ticker as tic
 
-# Getting information from configuration.txt file
-DEFAULTS = "configuration.txt"
+# Getting information from configuration file
 config = configparser.ConfigParser()
-config.read(DEFAULTS)
+config.read(sys.argv[1])
 
 a = config.getfloat('settings', 'a')
 beta = config.getint('settings', 'beta')
 b = config.getint('settings', 'b')
 N = config.getint('settings', 'N')
 
-path = config.get('paths','path')
+path = config.get('paths', 'path')
 
 alpha = a / b
 t = int(N / beta)
@@ -101,12 +101,8 @@ ax2.plot(x2, y2, color='grey', lw=1.5)
 ax2.scatter(x2, y2, cmap="Blues", s=80, alpha=0.6, edgecolor='black', linewidth=1)
 ax2.set_xlabel('$ln$ $k$', fontsize=15)
 ax2.set_ylabel('$ln$ $P(k)$', fontsize=15)
-ax2.get_xaxis().set_major_formatter(
-    matplotlib.ticker.LogFormatter(base=e, labelOnlyBase=True,
-                                   minor_thresholds=None, linthresh=None))
-ax2.get_yaxis().set_major_formatter(
-    matplotlib.ticker.LogFormatter(base=e, labelOnlyBase=True,
-                                   minor_thresholds=None, linthresh=None))
+ax2.get_xaxis().set_major_formatter(tic.LogFormatter(base=e, labelOnlyBase=True, linthresh=None))
+ax2.get_yaxis().set_major_formatter(tic.LogFormatter(base=e, labelOnlyBase=True, linthresh=None))
 
 # ------ Subplot 3 ------
 # Diameters values in function of N.
