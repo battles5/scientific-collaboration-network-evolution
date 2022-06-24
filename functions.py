@@ -82,11 +82,11 @@ def evolve(t, beta, b):
     for i in nlist:
         if b < i:
             g = nx.barabasi_albert_graph(i, b)
-            i =+ 1
-            c = nx.clustering(g)
-            clustcoefficient.append(c[i])
+            c = nx.average_clustering(g)
+            clustcoefficient.append(c)
             diameters.append(nx.diameter(g))
             population.append(len(g.nodes))
+            i =+ 1
     return diameters, population, clustcoefficient
 
 
@@ -98,6 +98,7 @@ def kdistrubution(N, b):
             for the "ti" in the [0; t] interval is simply rho(t) = 1/t.
 
     Parameters:
+        b : average number of new links that an incoming node creates.
         N: number of network nodes required to finish the simulation.
 
     Returns:
