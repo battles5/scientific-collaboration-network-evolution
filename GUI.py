@@ -15,7 +15,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import warnings
 import platform
-from tkinter import *
+import tkinter as tk
 from tkinter.ttk import Notebook
 
 # Suppressing matplotlib deprecation warnings
@@ -52,8 +52,8 @@ class GUI:
         self.currentStep = 0
 
         # Root window with tkinter
-        self.rootWindow = Tk()
-        self.statusText = StringVar(self.rootWindow, value=self.statusStr)
+        self.rootWindow = tk.Tk()
+        self.statusText = tk.StringVar(self.rootWindow, value=self.statusStr)
 
         # Graphic default settings
         self.rootWindow.wm_title(self.titleText)
@@ -62,15 +62,15 @@ class GUI:
         self.rootWindow.columnconfigure(0, weight=1)
         self.rootWindow.rowconfigure(0, weight=1)
         self.notebook = Notebook(self.rootWindow)
-        self.notebook.pack(side=TOP, padx=2, pady=2)
+        self.notebook.pack(side=tk.TOP, padx=2, pady=2)
 
         # Frames
-        self.frameRun = Frame(self.rootWindow)
-        self.frameSettings = Frame(self.rootWindow)
+        self.frameRun = tk.Frame(self.rootWindow)
+        self.frameSettings = tk.Frame(self.rootWindow)
         self.notebook.add(self.frameRun, text="Run")
         self.notebook.add(self.frameSettings, text="Settings")
-        self.status = Label(self.rootWindow, width=40, height=3, relief=SUNKEN, bd=1, textvariable=self.statusText)
-        self.status.pack(side=TOP, fill=X, padx=5, pady=5, expand=NO)
+        self.status = tk.Label(self.rootWindow, width=40, height=3, relief=tk.SUNKEN, bd=1, textvariable=self.statusText)
+        self.status.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5, expand=tk.NO)
 
         # There will be two frames: Run and Settings.
         # Below there is the variables list and default settings for
@@ -80,41 +80,42 @@ class GUI:
         # frame  Run
         # -----------------------------------
         # buttonRun
-        self.runPauseString = StringVar(self.rootWindow)
+        self.runPauseString = tk.StringVar(self.rootWindow)
         self.runPauseString.set("Run")
-        self.buttonRun = Button(self.frameRun, width=30, height=2,
+        self.buttonRun = tk.Button(self.frameRun, width=30, height=2,
                                 textvariable=self.runPauseString, command=self.runEvent)
-        self.buttonRun.pack(side=TOP, padx=5, pady=5)
+        self.buttonRun.pack(side=tk.TOP, padx=5, pady=5)
 
         # buttonStepOnce
-        self.buttonStep = Button(self.frameRun, width=30, height=2, text='Step Once', command=self.stepOnce)
-        self.buttonStep.pack(side=TOP, padx=5, pady=5)
+        self.buttonStep = tk.Button(self.frameRun, width=30, height=2, text='Step Once', command=self.stepOnce)
+        self.buttonStep.pack(side=tk.TOP, padx=5, pady=5)
 
         # buttonReset
-        self.buttonReset = Button(self.frameRun, width=30, height=2, text='Reset', command=self.resetModel)
-        self.buttonReset.pack(side=TOP, padx=5, pady=5)
+        self.buttonReset = tk.Button(self.frameRun, width=30, height=2, text='Reset', command=self.resetModel)
+        self.buttonReset.pack(side=tk.TOP, padx=5, pady=5)
 
         # -----------------------------------
         # frame Settings
         # -----------------------------------
-        can = Canvas(self.frameSettings)
+        can = tk.Canvas(self.frameSettings)
 
-        lab = Label(can, width=25, height=1, text="Step size ", justify=LEFT, anchor=W, takefocus=0)
+        lab = tk.Label(can, width=25, height=1, text="Step size ", justify=tk.LEFT, anchor=tk.W, takefocus=0)
         lab.pack(side='left')
 
-        self.stepScale = Scale(can, from_=1, to=50, resolution=1, command=self.changeStepSize, orient=HORIZONTAL,
+        self.stepScale = tk.Scale(can, from_=1, to=50, resolution=1, command=self.changeStepSize, orient=tk.HORIZONTAL,
                                width=25, length=150)
         self.stepScale.set(self.stepSize)
         self.stepScale.pack(side='left')
 
         can.pack(side='top')
 
-        can = Canvas(self.frameSettings)
-        lab = Label(can, width=25, height=1, text="Step visualization delay in ms ", justify=LEFT, anchor=W,
+        can = tk.Canvas(self.frameSettings)
+        lab = tk.Label(can, width=25, height=1, text="Step visualization delay in ms ", justify=tk.LEFT, anchor=tk.W,
                     takefocus=0)
         lab.pack(side='left')
-        self.stepDelay = Scale(can, from_=0, to=max(2000, self.timeInterval),
-                               resolution=10, command=self.changeStepDelay, orient=HORIZONTAL, width=25, length=150)
+        self.stepDelay = tk.Scale(can, from_=0, to=max(2000, self.timeInterval),
+                               resolution=10, command=self.changeStepDelay,
+                               orient=tk.HORIZONTAL, width=25, length=150)
         self.stepDelay.set(self.timeInterval)
         self.showHelp(self.stepDelay, "The visualization of each step is delays by the given number of milliseconds.")
         self.stepDelay.pack(side='left')
@@ -140,7 +141,7 @@ class GUI:
     def changeStepDelay(self, val):
         """
         This function let the user decide the upgrading frequency
-        of the visualization, setting the temporal nterval in ms.
+        of the visualization, setting the temporal interval in ms.
         """
         self.timeInterval = int(val)
 
@@ -170,18 +171,18 @@ class GUI:
         if self.running:
             self.rootWindow.after(self.timeInterval, self.stepModel)
             self.runPauseString.set("Pause")
-            self.buttonStep.configure(state=DISABLED)
-            self.buttonReset.configure(state=DISABLED)
+            self.buttonStep.configure(state=tk.DISABLED)
+            self.buttonReset.configure(state=tk.DISABLED)
             if len(self.parameterSetters) > 0:
-                self.buttonSaveParameters.configure(state=NORMAL)
-                self.buttonSaveParametersAndReset.configure(state=DISABLED)
+                self.buttonSaveParameters.configure(state=tk.NORMAL)
+                self.buttonSaveParametersAndReset.configure(state=tk.DISABLED)
         else:
             self.runPauseString.set("Continue Run")
-            self.buttonStep.configure(state=NORMAL)
-            self.buttonReset.configure(state=NORMAL)
+            self.buttonStep.configure(state=tk.NORMAL)
+            self.buttonReset.configure(state=tk.NORMAL)
             if len(self.parameterSetters) > 0:
-                self.buttonSaveParameters.configure(state=NORMAL)
-                self.buttonSaveParametersAndReset.configure(state=NORMAL)
+                self.buttonSaveParameters.configure(state=tk.NORMAL)
+                self.buttonSaveParametersAndReset.configure(state=tk.NORMAL)
 
     # ------ stepModel ------
     def stepModel(self):
@@ -211,7 +212,7 @@ class GUI:
         self.setStatusStr("Step " + str(self.currentStep))
         self.drawModel()
         if len(self.parameterSetters) > 0:
-            self.buttonSaveParameters.configure(state=NORMAL)
+            self.buttonSaveParameters.configure(state=tk.NORMAL)
 
     # ------ resetModel ------
     def resetModel(self):
@@ -243,7 +244,7 @@ class GUI:
     def start(self, func=[]):
         """
         This executes the "initialize", "observe" and "update" model functions taking them as arguments.
-        This function is envoked at every execution.
+        This function is invoked at every execution.
         """
         if len(func) == 3:
             self.modelInitFunc = func[0]
@@ -252,10 +253,10 @@ class GUI:
             if (self.modelStepFunc.__doc__ != None and len(self.modelStepFunc.__doc__) > 0):
                 self.showHelp(self.buttonStep, self.modelStepFunc.__doc__.strip())
             if (self.modelInitFunc.__doc__ != None and len(self.modelInitFunc.__doc__) > 0):
-                self.textInformation.config(state=NORMAL)
-                self.textInformation.delete(1.0, END)
-                self.textInformation.insert(END, self.modelInitFunc.__doc__.strip())
-                self.textInformation.config(state=DISABLED)
+                self.textInformation.config(state=tk.NORMAL)
+                self.textInformation.delete(1.0, tk.END)
+                self.textInformation.insert(tk.END, self.modelInitFunc.__doc__.strip())
+                self.textInformation.config(state=tk.DISABLED)
             self.modelInitFunc()
             self.drawModel()
         self.rootWindow.mainloop()
