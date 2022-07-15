@@ -1,29 +1,18 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Apr 14 08:09:18 2022
-
 @author: Orso Peruzzi
 """
-import hypothesis
 from hypothesis import strategies as st
 from hypothesis import settings
 from hypothesis import given
 from hypothesis import HealthCheck
 from numpy import sort
-
 import functions as fn
-import model
-import configparser
-import numpy as np
-import math
-from statistics import mean
+import networkx as nx
 
-# Getting information from configuration.txt file
-DEFAULTS = "configuration.txt"
-config = configparser.ConfigParser()
-config.read(DEFAULTS)
-
-b = config.getint('settings', 'b')
+b = 10
+m0 = 5
 
 
 @given(t = st.integers(min_value = 1),
@@ -91,3 +80,41 @@ def test_kdistrubution(N, b):
     assert len(Pk) == len(domain)
     # Test if Pk distribution is normalized
     assert sum(Pk) == 1
+
+@given(m0 = st.integers(min_value = 2))
+@settings(max_examples = 1, suppress_health_check = HealthCheck.all())
+def test_initialize(m0):
+    g = fn.initialize(m0)
+    # Test if is a networkx graph
+    assert type(g) == nx.classes.graph.Graph
+    # The "spring" layout is represented in networkx as a dictionary of dimension "m0"
+    # Test if g.pos instance is a dict with m0 elements inside
+    assert type(g.pos) == dict
+    assert len(g.pos) == m0
+
+@given(m0 = st.integers(min_value = 2))
+@settings(max_examples = 1, suppress_health_check = HealthCheck.all())
+def test_pref_select(g, nds):
+    g = nx.complete_graph(m0)
+    nds = list(g.nodes)
+    node_list = []
+    # Test if the node "i" is not the same after a step
+    # Test if the node "i" is a natural number > 0
+    for i in range(len(nds)):
+        node_i = fn.pref_select(g, nds)
+        node_list.append(node_i)
+        assert node_i > 0
+        assert isinstance(node_i, int) == True
+        if i > 0:
+            assert node_list[i-1] != node_list[i]
+
+@given(m0 = st.integers(min_value = 2), m = st.integers(min_value = 1, max_value = 3))
+@settings(max_examples = 1, suppress_health_check = HealthCheck.all())
+def test_update(m, m0):
+    g = nx.complete_graph(m0)
+    graph = fn.update(g, m)
+    # Test if is a networkx graph
+    assert type(graph) == nx.classes.graph.Graph
+    # Test if update function increases the number of nodes
+    graph_1 = fn.update(g, m)
+    assert nx.nodes(graph) < nx.nodes(graph_1)
