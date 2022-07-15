@@ -6,7 +6,9 @@ Created on Mon May 02 13:41:01 2022
 import math
 import networkx as nx
 from statistics import mean
-from pylab import cla, uniform
+from pylab import cla, uniform, random
+
+random.seed = 42
 
 
 # -----------------------------------
@@ -212,4 +214,4 @@ def update(g, m):
         g.pos[newcomer] = (0, 0)
     # Simulation of node movement
     g.pos = nx.spring_layout(g, pos=g.pos, iterations=3)
-    return g
+    return g, nds
