@@ -74,7 +74,7 @@ there could be different types of configurations for the model, depending on the
 of total nodes to be reached during the simulation and the number of new links that an incoming
 node creates and the joining rate, so the user has to specify the configuration he wants as
 it is described in the previous section. In order to start, when launching the simulation or the model file, the user has to execute it from the command
-line with the syntax "**python simulation.py**".
+line with the syntax "**python simulation.py name_of_the_configuration**" (in our case, configuration.txt).
 2. When this is done, the user will see two windows open, one for dynamic visualization of the network, the other for managing it.
 In the latter there are two frames: "run" and "settings." By clicking on the second one,
 it is possible to vary the number of time steps to be executed before updating the network ("step size"),
@@ -91,7 +91,7 @@ finally, to reset and repeat the operations ("reset button").
 To start the simulation of the model, simply:
 1. Like in GUI step 1, choose the simulation parameters and edit them in configuration.txt.
 2. Even in this case launch the simulation file (that imports its parameters from the configuration)
-with the command line, using same syntax "**python model.py**".
+with the command line, using same syntax "**python simulation.py name_of_the_configuration**" (again, in our case, configuration.txt).
 3. At the end of the process the results will be plotted. A window will open with four representative subplots:
     * the **average connectivity**, **diameter** and **cluster coefficient** as a function of the population of nodes in the graph;
     * the **probability distribution of connectivity** on a logarithmic scale.
