@@ -214,4 +214,4 @@ def update(g, m):
         g.pos[newcomer] = (0, 0)
     # Simulation of node movement
     g.pos = nx.spring_layout(g, pos=g.pos, iterations=3)
-    return g, nds
+    return g
