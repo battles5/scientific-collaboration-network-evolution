@@ -142,7 +142,7 @@ def initialize(m0):
     # so we set it with .pos method
     g.pos = nx.spring_layout(g)
     g.count = 0
-    return g.pos, g.count, g
+    return g
 
 
 def observe(g):
